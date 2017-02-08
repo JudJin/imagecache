@@ -62,7 +62,9 @@ class ImageCache
             $app = function_exists('app') ? app() : null;
 
             // if laravel app cache exists
-            if (is_a($app, 'Illuminate\Foundation\Application')) {
+            $appDir = $manager->config['lumen'] ? 'Laravel\Lumen\Application' : 'Illuminate\Foundation\Application';
+
+            if (is_a($app, $appDir)) {
                 $cache = $app->make('cache');
             }
 
